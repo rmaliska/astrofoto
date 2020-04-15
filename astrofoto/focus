@@ -1,0 +1,26 @@
+ #!/bin/bash
+
+# Ask for object name
+read -p "Object Name: " oname
+
+# ISO
+read -p "ISO: " iso
+
+# Bulb time
+read -p "Bulbtime: " bulbtime
+
+# Frames count
+# read -p "Frames: " frames
+
+# Enviroment
+
+HOME=/home/astroberry/astrofoto
+DATE=`date +"%d%b%y"`
+NAME=${oname}_${DATE}
+FOLDER="$HOME/$DATE/$oname"
+mkdir -p "$FOLDER"
+cd "$FOLDER"
+
+gphoto2 --port usb: --set-config shutterspeed=bulb --set-config imageformat=1 --set-config iso=$iso --bulb=$bulbtime --frames 1 --interval=$(($bulbtime+8)) --filename "${NAME}.jpg" --capture-image-and-download
+
+echo "Done!"

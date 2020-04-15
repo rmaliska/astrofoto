@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# gphoto2 --set-config shutterspeed=bulb --quiet
+gphoto2 --set-config shutterspeed=bulb --quiet
 
 # Ask for object name
 read -p "Object Name: " oname
